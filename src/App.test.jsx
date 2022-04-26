@@ -1,11 +1,31 @@
 import { MemoryRouter } from 'react-router-dom';
-import { render, screen, waitFor } from '@testing-library/react';
-import Header from './components/layout/Header'
+import { render, screen, getByAltText, waitFor, getByText } from '@testing-library/react';
+import App from './App'
+import Header from './components/layout/Header';
 
-test('Should render the header', async () => {
+
+
+
+
+describe('App', () => {
+it('Should render the header', async () => {
 render(
-    <MemoryRouter>
-     <Header />
-    </MemoryRouter>
-)
+    <App/>
+);
+
+ const image = screen.getByAltText('Alchemy Logo')
+
+ expect(image).toBeInTheDocument()
+
+ waitFor(() => {
+    screen.getByText(/^Meet \w+!$/i);
+  })
+
+
+
+
+
+
+
+});
 });
