@@ -1,3 +1,6 @@
+import { render, screen, findByText } from '@testing-library/react';
+import Home from './Home';
+
 
 const user = {
   id: 1,
@@ -10,6 +13,12 @@ const user = {
   color: 'crimson',
 }
 
-test('Should render the user profile', () => {
+test('Should render the user profile', async () => {
+render(
+<Home />
+)
 
+const userName = await screen.findByText(user.name)
+
+expect(userName).toBeInTheDocument()
 })
