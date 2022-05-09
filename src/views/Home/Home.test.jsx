@@ -1,5 +1,5 @@
-import { render, screen, findByText } from '@testing-library/react';
-import Home from './Home';
+import { render, screen, findByText, findByAltText } from '@testing-library/react';
+import App from '../../App';
 
 
 const user = {
@@ -15,10 +15,16 @@ const user = {
 
 test('Should render the user profile', async () => {
 render(
-<Home />
+<App />
 )
 
-const userName = await screen.findByText(user.name)
+const userName = await screen.findByText('Vonta')
 
 expect(userName).toBeInTheDocument()
+
+const avatar = await screen.findByAltText('avatar')
+expect(avatar).toHaveClass('object-fill')
+
+const header= screen.getByRole('banner')
+expect(header).toBeInTheDocument()
 })
